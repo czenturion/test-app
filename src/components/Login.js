@@ -21,8 +21,8 @@ const Login = ({setState, state}) => {
         <OutlinedInput {...register("login", {required: true})}
                        className="login-input"
                        placeholder="Login"/>
-        <OutlinedInput {...register("password", {required: true})} c
-                       lassName="login-input"
+        <OutlinedInput {...register("password", {required: true})}
+                       className="login-input"
                        placeholder="Password"
                        type="password"/>
         <Button className="login-button" type="submit"
