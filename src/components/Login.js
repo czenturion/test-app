@@ -1,20 +1,12 @@
 import {Button, OutlinedInput} from "@mui/material";
 import {useForm} from "react-hook-form";
 import '../App.css';
-import {API} from "../api/api";
 
-const Login = ({setState, state}) => {
+const Login = ({auth}) => {
     const {register, handleSubmit} = useForm();
 
-    const onSubmit = async loginData => {
-        const res = await API.auth(loginData);
-
-        if (res.error_code === 0) {
-            setState({
-                ...state,
-                ...res.data
-            });
-        }
+    const onSubmit = loginData => {
+        auth(loginData);
     }
 
     return <form className="login-page" onSubmit={handleSubmit(onSubmit)}>

@@ -19,3 +19,11 @@
   justify-content: center;
   margin-top: 100px;
 }
+
+.content-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
