@@ -1,12 +1,14 @@
 import {Button, OutlinedInput} from "@mui/material";
 import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 import '../App.css';
 
 const Login = ({auth}) => {
     const {register, handleSubmit} = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = loginData => {
-        auth(loginData);
+        auth(loginData, navigate);
     }
 
     return <form className="login-page" onSubmit={handleSubmit(onSubmit)}>
