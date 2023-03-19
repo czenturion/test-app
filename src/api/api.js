@@ -16,15 +16,19 @@ export const API = {
     }
 }
 
-export const auth = async (formData, navigate) => {
+export const auth = async (formData, navigate, setIsLoading) => {
+    setIsLoading(true);
     const {error_code, data} = await API.auth(formData);
     if (error_code === 0) {
         localStorage.setItem("token", data.token);
         navigate('/content');
     }
+    setIsLoading(false);
 }
 
-export const getData = async (token, setData) => {
+export const getData = async (token, setData, setIsLoading) => {
+    setIsLoading(false);
     const {data} = await API.getData(token);
     setData(data);
+    setIsLoading(true);
 }
