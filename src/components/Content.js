@@ -3,6 +3,7 @@ import {Card, CircularProgress, IconButton} from '@mui/material';
 import '../App.css';
 import {useNavigate} from "react-router-dom";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Content = ({getData, data, setData}) => {
     const navigate = useNavigate();
@@ -14,8 +15,13 @@ const Content = ({getData, data, setData}) => {
         getData(localStorage.token, setData, setIsLoading);
     }, [])
 
-    const onClick = () => {
+    const onClickAdd = () => {
         console.log('+')
+    }
+
+    const onClickLogOut = () => {
+        localStorage.clear();
+        navigate('/login');
     }
 
     return <div className="content-page">
@@ -37,11 +43,26 @@ const Content = ({getData, data, setData}) => {
                     </div>}</Card>)
                     : <></>
         }
-        <Card style={{padding: "10px", margin: "20px", maxWidth: "300px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", height: "295px"}}>
-            <IconButton onClick={onClick}>
+        <Card style={{
+            padding: "10px",
+            margin: "20px",
+            maxWidth: "300px",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "365px",
+            ':hover': {boxShadow: 20}
+        }}>
+            <IconButton onClick={onClickAdd}>
                 <AddCircleOutlineIcon fontSize="large" className="button-add"/>
             </IconButton>
         </Card>
+        <div className="logOut-btn">
+            <IconButton onClick={onClickLogOut}>
+                <LogoutIcon fontSize="large" className="button-add"/>
+            </IconButton>
+        </div>
     </div>
 }
 

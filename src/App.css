@@ -34,3 +34,9 @@
   max-width: 1140px;
   width: 100%;
 }
+
+.logOut-btn {
+  position: absolute;
+  right: 5vh;
+  top: 3vh;
+}
