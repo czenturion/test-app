@@ -5,13 +5,17 @@ const instance = axios.create({
     baseURL: "https://test.v5.pryaniky.com"
 })
 
-export const API = {
+const API = {
     auth(loginData) {
         return instance.post('/ru/data/v3/testmethods/docs/login', loginData)
             .then(res => res.data)
     },
     getData(token) {
         return instance.get('/ru/data/v3/testmethods/docs/userdocs/get', {headers: {"x-auth": token}})
+            .then(res => res.data)
+    },
+    uploadData(token, formData) {
+        return instance.post('/ru/data/v3/testmethods/docs/userdocs/create', formData, {headers: {"x-auth": token}})
             .then(res => res.data)
     }
 }
@@ -32,3 +36,13 @@ export const getData = async (token, setData, setIsLoading) => {
     setData(data);
     setIsLoading(true);
 }
+
+export const uploadNewDocument = async (formData, setIsLoading) => {
+    setIsLoading(true);
+    const time = new Date().toISOString();
+    formData.companySigDate = time;
+    formData.employeeSigDate = time;
+    const {data} = await API.uploadData(localStorage.token, formData);
+    setIsLoading(false);
+}
+
