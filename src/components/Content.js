@@ -14,7 +14,7 @@ const Content = ({getData, data, setData}) => {
 
     useEffect(() => {
         if (!localStorage.token) navigate('/login');
-        getData(localStorage.token, setData, setIsLoading);
+        getData(setData, setIsLoading);
     }, [])
 
     const onClickLogOut = () => {
@@ -30,7 +30,10 @@ const Content = ({getData, data, setData}) => {
                     ? <CircularProgress sx={{marginTop: "20vh"}}/>
                     : data
                         ? data.map(elem => <Item elem={elem}
-                                                 key={elem.id}/>)
+                                                 key={elem.id}
+                                                 getData={getData}
+                                                 setIsLoading={setIsLoading}
+                                                 setData={setData}/>)
                         : <></>
             }
         </div>
@@ -42,7 +45,8 @@ const Content = ({getData, data, setData}) => {
                 <AddCircleOutlineIcon fontSize="large" className="button-add"/>
             </IconButton>
         </div>
-        <Modal active={modalActive} setActive={setModalActive} getData={getData} setData={setData} setIsLoading={setIsLoading}/>
+        <Modal active={modalActive} setActive={setModalActive} getData={getData} setData={setData}
+               setIsLoading={setIsLoading}/>
     </div>
 }
 

@@ -8,8 +8,8 @@ export const Modal = ({active, setActive, getData, setData, setIsLoading}) => {
     const {register, handleSubmit} = useForm();
 
     const onSubmit = (dataForm) => {
-        const res = uploadNewDocument(dataForm, setIsLoading);
-        // getData(localStorage.token, setData, setIsLoading);
+        uploadNewDocument(dataForm, setIsLoading, setData, setActive);
+        getData(setData, setIsLoading);
     }
 
     return (
