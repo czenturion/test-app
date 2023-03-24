@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {CircularProgress, IconButton} from '@mui/material';
+import {CircularProgress, IconButton, Typography} from '@mui/material';
 import '../App.css';
 import {useNavigate} from "react-router-dom";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -28,20 +28,20 @@ const Content = ({getData, data, setData}) => {
             {
                 !isLoading
                     ? <CircularProgress sx={{marginTop: "20vh"}}/>
-                    : data
+                    : data.length !== 0
                         ? data.map(elem => <Item elem={elem}
                                                  key={elem.id}
                                                  getData={getData}
                                                  setIsLoading={setIsLoading}
                                                  setData={setData}/>)
-                        : <></>
+                        : <Typography variant="h2" sx={{margin: "15px"}}>Документов нет.</Typography>
             }
         </div>
         <div style={{visibility: `${isLoading ? "visible" : "hidden"}`}}>
-            <IconButton onClick={onClickLogOut}>
+            <IconButton onClick={onClickLogOut} title="Log Out">
                 <LogoutIcon fontSize="large" className="button-add"/>
             </IconButton>
-            <IconButton onClick={() => setModalActive(true)}>
+            <IconButton onClick={() => setModalActive(true)} title="Add new Document">
                 <AddCircleOutlineIcon fontSize="large" className="button-add"/>
             </IconButton>
         </div>
