@@ -5,9 +5,9 @@ import '../App.css';
 import {useState} from "react";
 
 const Login = ({auth}) => {
+    const navigate = useNavigate();
     const {register, handleSubmit} = useForm();
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
 
     const onSubmit = loginData => {
         auth(loginData, navigate, setIsLoading);

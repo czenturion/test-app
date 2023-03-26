@@ -34,18 +34,24 @@ const Content = ({getData, data, setData}) => {
                                                  getData={getData}
                                                  setIsLoading={setIsLoading}
                                                  setData={setData}/>)
-                        : <Typography variant="h2" sx={{margin: "15px"}}>Документов нет.</Typography>
+                        : <Typography variant="h2" sx={{margin: "40px 80px"}}>Документов нет.</Typography>
             }
         </div>
-        <div style={{visibility: `${isLoading ? "visible" : "hidden"}`}}>
-            <IconButton onClick={onClickLogOut} title="Log Out">
+        <div style={{visibility: `${isLoading ? "visible" : "hidden"}`, display: "flex", flexDirection: "column", padding: "15px"}}>
+            <IconButton
+                onClick={onClickLogOut}
+                title="Log Out">
                 <LogoutIcon fontSize="large" className="button-add"/>
             </IconButton>
-            <IconButton onClick={() => setModalActive(true)} title="Add new Document">
+            <IconButton
+                onClick={() => setModalActive(true)}
+                title="Add new Document" sx={{marginTop: "15px"}}>
                 <AddCircleOutlineIcon fontSize="large" className="button-add"/>
             </IconButton>
         </div>
-        <Modal active={modalActive} setActive={setModalActive} getData={getData} setData={setData}
+        <Modal active={modalActive}
+               setActive={setModalActive}
+               setData={setData}
                setIsLoading={setIsLoading}/>
     </div>
 }

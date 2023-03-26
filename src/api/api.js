@@ -5,10 +5,9 @@ const instance = axios.create({
     baseURL: "https://test.v5.pryaniky.com"
 })
 
-const headers = {
+const config = {
     headers: {"x-auth": localStorage.token}
 }
-
 
 const API = {
     auth(loginData) {
@@ -16,15 +15,19 @@ const API = {
             .then(res => res.data)
     },
     getData() {
-        return instance.get('/ru/data/v3/testmethods/docs/userdocs/get', headers)
+        return instance.get('/ru/data/v3/testmethods/docs/userdocs/get', config)
             .then(res => res.data)
     },
     uploadDocument(formData) {
-        return instance.post('/ru/data/v3/testmethods/docs/userdocs/create', formData, headers)
+        return instance.post('/ru/data/v3/testmethods/docs/userdocs/create', formData, config)
             .then(res => res.data)
     },
     deleteDocument(id) {
-        return instance.delete(`/ru/data/v3/testmethods/docs/userdocs/delete/${id}`, headers)
+        return instance.delete(`/ru/data/v3/testmethods/docs/userdocs/delete/${id}`, config)
+            .then(res => res.data)
+    },
+    editDocument(id, doc) {
+        return instance.post(`/ru/data/v3/testmethods/docs/userdocs/set/${id}`, doc, config)
             .then(res => res.data)
     }
 }
@@ -42,28 +45,35 @@ export const auth = async (formData, navigate, setIsLoading) => {
 export const getData = async (setData, setIsLoading) => {
     setIsLoading(false);
     const {error_code, data} = await API.getData();
+
     if (error_code === 0) {
         setData(data);
-        setIsLoading(true);
     }
+    setIsLoading(true);
 }
 
 export const uploadNewDocument = async (formData, setIsLoading, setData, setActive) => {
     setIsLoading(true);
-    const time = new Date().toISOString();
-    formData.companySigDate = formData.employeeSigDate = time;
+    formData.companySigDate = formData.employeeSigDate = new Date().toISOString();
     const {error_code} = await API.uploadDocument(formData);
-    debugger
 
     if (error_code === 0) {
         await getData(setData, setIsLoading);
     }
     setActive(false);
-    setIsLoading(false);
 }
 
 export const deleteDocumentById = async (id, getData, setData, setIsLoading) => {
     const {error_code} = await API.deleteDocument(id);
+
+    if (error_code === 0) {
+        getData(setData, setIsLoading);
+    }
+}
+
+export const editDocumentById = async (id, doc, getData, setData, setIsLoading) => {
+    const {error_code} = await API.editDocument(id, doc);
+
     if (error_code === 0) {
         getData(setData, setIsLoading);
     }
