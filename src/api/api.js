@@ -47,7 +47,7 @@ export const getData = async (setData, setIsLoading) => {
     const {error_code, data} = await API.getData();
 
     if (error_code === 0) {
-        setData(data);
+        await setData(data);
     }
     setIsLoading(true);
 }

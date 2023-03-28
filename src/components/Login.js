@@ -24,7 +24,8 @@ const Login = ({auth}) => {
                                    className="login-input"
                                    placeholder="Password"
                                    type="password"/>
-                    <Button className="login-button" type="submit"
+                    <Button className="login-button"
+                            type="submit"
                             sx={{marginTop: '15px', maxWidth: '223px', width: '100%', height: '56px'}}>Log in</Button></>
         }
     </form>
