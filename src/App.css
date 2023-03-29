@@ -45,6 +45,7 @@
 .card Input {
   margin-top: 10px;
   width: 300px;
+  padding-bottom: 5px;
 }
 
 p {

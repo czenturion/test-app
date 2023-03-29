@@ -1,4 +1,4 @@
-import {Card, IconButton, Input} from '@mui/material';
+import {Card, IconButton, Input, Typography} from '@mui/material';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 import DoDisturbRoundedIcon from '@mui/icons-material/DoDisturbRounded';
@@ -9,15 +9,18 @@ import {useForm} from "react-hook-form";
 
 export const Item = ({elem, getData, setData, setIsLoading}) => {
     const [editMode, setEditMode] = useState(false);
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, getValues} = useForm();
 
     const onSubmit = editedDoc => {
         console.log(elem.id, editedDoc)
         editDocumentById(elem.id, editedDoc, getData, setData, setIsLoading);
     }
 
-    const onClick = event => {
-        console.log(event.target.elements)
+    const onClick = () => {
+        const data = getValues();
+        data.companySigDate = data.employeeSigDate = elem.companySigDate;
+
+        console.log(data)
     }
 
     return <Card key={elem.id}
@@ -49,41 +52,40 @@ export const Item = ({elem, getData, setData, setIsLoading}) => {
                 </div>
                 : <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="btnStyle">
-                        <Input {...register("companySigDate", {required: true})}
-                               defaultValue={elem.companySigDate}
-                               disabled={true}
-                               className="input"/>
-                        <IconButton onClick={() => setEditMode(false)}
-                                    title="Exit from edit mode">
-                            <DoDisturbRoundedIcon/>
+                        <Typography variant="h7" component="b">{elem.companySigDate}</Typography>
+                        <IconButton title="Save edited document"
+                                    component="button"
+                                    onClick={onClick}>
+                            <CheckRoundedIcon/>
                         </IconButton>
                     </div>
                     <div className="btnStyle">
                         <Input {...register("companySignatureName", {required: true})}
                                defaultValue={elem.companySignatureName}
                                placeholder="companySignatureName"
-                               className="input"/>
-                        <IconButton title="Save edited document"
-                                    component="button"
-                                    type="submit">
-                            <CheckRoundedIcon/>
+                               className="input"
+                               sx={{paddingBottom: "5px"}}/>
+                        <IconButton onClick={() => setEditMode(false)}
+                                    title="Exit from edit mode">
+                            <DoDisturbRoundedIcon/>
                         </IconButton>
                     </div>
                     <Input {...register("documentName", {required: true})}
                            defaultValue={elem.documentName}
-                           placeholder="documentName"/>
+                           placeholder="documentName"
+                           sx={{paddingTop: "2px"}}/>
                     <Input {...register("documentStatus", {required: true})}
                            defaultValue={elem.documentStatus}
-                           placeholder="documentStatus"/>
+                           placeholder="documentStatus"
+                           sx={{paddingBottom: "5px"}}
+                           component="b"/>
                     <Input {...register("documentType", {required: true})}
                            defaultValue={elem.documentType}
                            placeholder="documentType"/>
                     <Input {...register("employeeNumber", {required: true})}
                            defaultValue={elem.employeeNumber}
                            placeholder="employeeNumber"/>
-                    <Input {...register("employeeSigDate", {required: true})}
-                           defaultValue={elem.employeeSigDate}
-                           disabled={true}/>
+                    <Typography variant="h7" component="b">{elem.employeeSigDate}</Typography>
                     <Input {...register("employeeSignatureName", {required: true})}
                            defaultValue={elem.employeeSignatureName}
                            placeholder="employeeSignatureName"
