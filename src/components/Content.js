@@ -6,8 +6,9 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {Item} from "./Item";
 import {Modal} from "./Modal";
+import {getData} from "../api/api";
 
-const Content = ({getData, data, setData}) => {
+const Content = ({data, setData}) => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [modalActive, setModalActive] = useState(false);
@@ -31,10 +32,9 @@ const Content = ({getData, data, setData}) => {
                     : data.length !== 0
                         ? data.map(elem => <Item elem={elem}
                                                  key={elem.id}
-                                                 getData={getData}
                                                  setIsLoading={setIsLoading}
                                                  setData={setData}/>)
-                        : <Typography variant="h2" sx={{margin: "40px 80px"}}>Документов нет.</Typography>
+                        : <Typography variant="h2" sx={{margin: "40px 80px"}}>No documents</Typography>
             }
         </div>
         <div style={{visibility: `${isLoading ? "visible" : "hidden"}`, display: "flex", flexDirection: "column", padding: "15px"}}>
@@ -45,7 +45,8 @@ const Content = ({getData, data, setData}) => {
             </IconButton>
             <IconButton
                 onClick={() => setModalActive(true)}
-                title="Add new Document" sx={{marginTop: "15px"}}>
+                title="Add new Document"
+                sx={{marginTop: "15px"}}>
                 <AddCircleOutlineIcon fontSize="large" className="button-add"/>
             </IconButton>
         </div>

@@ -55,26 +55,26 @@ export const getData = async (setData, setIsLoading) => {
 export const uploadNewDocument = async (formData, setIsLoading, setData, setActive) => {
     setIsLoading(true);
     formData.companySigDate = formData.employeeSigDate = new Date().toISOString();
+    setActive(false);
+
     const {error_code} = await API.uploadDocument(formData);
+    if (error_code === 0) {
+        await getData(setData, setIsLoading);
+    }
+}
+
+export const deleteDocumentById = async (id, setData, setIsLoading) => {
+    const {error_code} = await API.deleteDocument(id);
 
     if (error_code === 0) {
         await getData(setData, setIsLoading);
     }
-    setActive(false);
 }
 
-export const deleteDocumentById = async (id, getData, setData, setIsLoading) => {
-    const {error_code} = await API.deleteDocument(id);
-
-    if (error_code === 0) {
-        getData(setData, setIsLoading);
-    }
-}
-
-export const editDocumentById = async (id, doc, getData, setData, setIsLoading) => {
+export const editDocumentById = async (id, doc, setData, setIsLoading) => {
     const {error_code} = await API.editDocument(id, doc);
 
     if (error_code === 0) {
-        getData(setData, setIsLoading);
+        await getData(setData, setIsLoading);
     }
 }
