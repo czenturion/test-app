@@ -5,10 +5,8 @@ import {deleteDocumentById} from "../api/api";
 import {useState} from "react";
 import {ItemEditForm} from "./ItemEditForm";
 
-export const Item = ({elem, setData, setIsLoading}) => {
+export const Item = ({elem, setData, setIsLoading, alertMessageTimer}) => {
     const [editMode, setEditMode] = useState(false);
-
-
 
     return <Card key={elem.id}
                  sx={{padding: "10px", margin: "10px", width: "300px"}}
@@ -18,7 +16,7 @@ export const Item = ({elem, setData, setIsLoading}) => {
                 ? <div>
                     <div className="btnStyle">
                         <p>{elem.companySigDate}</p>
-                        <IconButton onClick={() => deleteDocumentById(elem.id, setData, setIsLoading)}
+                        <IconButton onClick={() => deleteDocumentById(elem.id, setData, setIsLoading, alertMessageTimer)}
                                     title="Delete this Document">
                             <DeleteForeverRoundedIcon/>
                         </IconButton>
@@ -40,7 +38,8 @@ export const Item = ({elem, setData, setIsLoading}) => {
                 : <ItemEditForm elem={elem}
                                 setEditMode={setEditMode}
                                 setData={setData}
-                                setIsLoading={setIsLoading}/>
+                                setIsLoading={setIsLoading}
+                                alertMessageTimer={alertMessageTimer}/>
         }
     </Card>
 }

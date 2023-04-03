@@ -5,29 +5,30 @@ const instance = axios.create({
     baseURL: "https://test.v5.pryaniky.com"
 })
 
-const config = {
-    headers: {"x-auth": localStorage.token}
-}
-
 const API = {
     auth(loginData) {
         return instance.post('/ru/data/v3/testmethods/docs/login', loginData)
             .then(res => res.data)
     },
     getData() {
-        return instance.get('/ru/data/v3/testmethods/docs/userdocs/get', config)
+        return instance.get('/ru/data/v3/testmethods/docs/userdocs/get',
+            // todo: Find out how to optimise configs, cause declaring in line 5 causes server deny
+            {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },
     uploadDocument(formData) {
-        return instance.post('/ru/data/v3/testmethods/docs/userdocs/create', formData, config)
+        return instance.post('/ru/data/v3/testmethods/docs/userdocs/create', formData,
+            {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },
     deleteDocument(id) {
-        return instance.delete(`/ru/data/v3/testmethods/docs/userdocs/delete/${id}`, config)
+        return instance.delete(`/ru/data/v3/testmethods/docs/userdocs/delete/${id}`,
+            {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },
     editDocument(id, doc) {
-        return instance.post(`/ru/data/v3/testmethods/docs/userdocs/set/${id}`, doc, config)
+        return instance.post(`/ru/data/v3/testmethods/docs/userdocs/set/${id}`, doc,
+            {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     }
 }
@@ -35,24 +36,27 @@ const API = {
 export const auth = async (formData, navigate, setIsLoading) => {
     setIsLoading(true);
     const {error_code, data} = await API.auth(formData);
+
     if (error_code === 0) {
-        localStorage.setItem("token", data.token);
+        await localStorage.setItem("token", data.token);
         navigate('/content');
     }
     setIsLoading(false);
 }
 
-export const getData = async (setData, setIsLoading) => {
+export const getData = async (setData, setIsLoading, alertMessageTimer) => {
     setIsLoading(false);
     const {error_code, data} = await API.getData();
 
     if (error_code === 0) {
-        await setData(data);
+        setData(data);
+    } else if (error_code === 2004) {
+        alertMessageTimer();
     }
     setIsLoading(true);
 }
 
-export const uploadNewDocument = async (formData, setIsLoading, setData, setActive) => {
+export const uploadNewDocument = async (formData, setIsLoading, setData, setActive, alertMessageTimer) => {
     setIsLoading(true);
     formData.companySigDate = formData.employeeSigDate = new Date().toISOString();
     setActive(false);
@@ -60,21 +64,27 @@ export const uploadNewDocument = async (formData, setIsLoading, setData, setActi
     const {error_code} = await API.uploadDocument(formData);
     if (error_code === 0) {
         await getData(setData, setIsLoading);
+    } else {
+        alertMessageTimer();
     }
 }
 
-export const deleteDocumentById = async (id, setData, setIsLoading) => {
+export const deleteDocumentById = async (id, setData, setIsLoading, alertMessageTimer) => {
     const {error_code} = await API.deleteDocument(id);
 
     if (error_code === 0) {
         await getData(setData, setIsLoading);
+    } else {
+        alertMessageTimer();
     }
 }
 
-export const editDocumentById = async (id, doc, setData, setIsLoading) => {
+export const editDocumentById = async (id, doc, setData, setIsLoading, alertMessageTimer) => {
     const {error_code} = await API.editDocument(id, doc);
 
     if (error_code === 0) {
         await getData(setData, setIsLoading);
+    } else {
+        alertMessageTimer();
     }
 }

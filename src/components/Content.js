@@ -8,14 +8,14 @@ import {Item} from "./Item";
 import {Modal} from "./Modal";
 import {getData} from "../api/api";
 
-const Content = ({data, setData}) => {
+const Content = ({data, setData, alertMessageTimer}) => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
         if (!localStorage.token) navigate('/login');
-        getData(setData, setIsLoading);
+        getData(setData, setIsLoading, alertMessageTimer, localStorage.getItem("token"));
     }, [])
 
     const onClickLogOut = () => {
@@ -33,7 +33,8 @@ const Content = ({data, setData}) => {
                         ? data.map(elem => <Item elem={elem}
                                                  key={elem.id}
                                                  setIsLoading={setIsLoading}
-                                                 setData={setData}/>)
+                                                 setData={setData}
+                                                 alertMessageTimer={alertMessageTimer}/>)
                         : <Typography variant="h2" sx={{margin: "40px 80px"}}>No documents</Typography>
             }
         </div>
@@ -53,7 +54,8 @@ const Content = ({data, setData}) => {
         <Modal active={modalActive}
                setActive={setModalActive}
                setData={setData}
-               setIsLoading={setIsLoading}/>
+               setIsLoading={setIsLoading}
+               alertMessageTimer={alertMessageTimer}/>
     </div>
 }
 

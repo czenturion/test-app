@@ -38,6 +38,11 @@
   width: 100%;
 }
 
+.mui__error {
+  position: fixed;
+  top: 100px;
+}
+
 .btnStyle .input {
   width: 250px;
 }

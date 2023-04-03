@@ -4,11 +4,11 @@ import CloseIcon from '@mui/icons-material/CloseRounded';
 import FileDownloadDoneRoundedIcon from '@mui/icons-material/FileDownloadDoneRounded';
 import {uploadNewDocument} from "../api/api";
 
-export const Modal = ({active, setActive, setData, setIsLoading}) => {
+export const Modal = ({active, setActive, setData, setIsLoading, alertMessageTimer}) => {
     const {register, handleSubmit} = useForm();
 
     const onSubmit = (dataForm) => {
-        uploadNewDocument(dataForm, setIsLoading, setData, setActive);
+        uploadNewDocument(dataForm, setIsLoading, setData, setActive, alertMessageTimer);
     }
 
     return (
