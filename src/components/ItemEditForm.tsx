@@ -2,11 +2,31 @@ import {CircularProgress, IconButton, Input, Typography} from "@mui/material";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import DoDisturbRoundedIcon from "@mui/icons-material/DoDisturbRounded";
 import {useForm} from "react-hook-form";
-import {editDocumentById} from "../api/api";
-import {useState} from "react";
+import {editDocumentById} from "../api/api.tsx";
+import {useState, FC} from "react";
 
-export const ItemEditForm = ({elem, setEditMode, setData, setIsLoading, alertMessageTimer}) => {
-    const {register, handleSubmit} = useForm();
+export type ArrayElemType = {
+    companySigDate: string
+    companySignatureName: string
+    documentName: string
+    documentStatus: string
+    documentType: string
+    employeeNumber: string
+    employeeSigDate: string
+    employeeSignatureName: string
+    id?: string
+}
+
+type ItemEditFormType = {
+    elem: ArrayElemType
+    setEditMode: (value: boolean) => void
+    setData: () => void
+    setIsLoading: boolean
+    alertMessageTimer: () => void
+}
+
+export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, setIsLoading, alertMessageTimer}) => {
+    const {register, handleSubmit} = useForm<ArrayElemType>();
     const [btnClicked, setBtnClicked] = useState(false);
 
     const onSubmit = editedDoc => {

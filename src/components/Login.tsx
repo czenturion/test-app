@@ -2,11 +2,20 @@ import {Button, CircularProgress, OutlinedInput} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import '../App.css';
-import {useState} from "react";
+import {useState, FC} from "react";
 
-const Login = ({auth}) => {
+type LoginType = {
+    auth: () => void
+}
+
+type LoginFormType = {
+    login: string
+    password: string
+}
+
+const Login: FC<LoginType> = ({auth}) => {
     const navigate = useNavigate();
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit} = useForm<LoginFormType>();
     const [isLoading, setIsLoading] = useState(false);
 
     const onSubmit = loginData => {

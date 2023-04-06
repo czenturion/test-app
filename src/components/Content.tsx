@@ -4,9 +4,9 @@ import '../App.css';
 import {useNavigate} from "react-router-dom";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {Item} from "./Item";
-import {Modal} from "./Modal";
-import {getData} from "../api/api";
+import {Item} from "./Item.tsx";
+import {Modal} from "./Modal.tsx";
+import {getData} from "../api/api.tsx";
 
 const Content = ({data, setData, alertMessageTimer}) => {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Content = ({data, setData, alertMessageTimer}) => {
 
     useEffect(() => {
         if (!localStorage.token) navigate('/login');
-        getData(setData, setIsLoading, alertMessageTimer, localStorage.getItem("token"));
+        getData(setData, setIsLoading, alertMessageTimer);
     }, [])
 
     const onClickLogOut = () => {
