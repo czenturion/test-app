@@ -1,6 +1,6 @@
-import '../App.css';
-import {Typography, Button} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+import {Typography, Button} from '@mui/material';
+import '../App.css';
 
 export const NotFound = () => {
     const navigate = useNavigate();

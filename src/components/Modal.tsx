@@ -1,9 +1,9 @@
+import {FC} from "react";
 import {useForm} from "react-hook-form";
 import {IconButton, TextField} from "@mui/material";
 import CloseIcon from '@mui/icons-material/CloseRounded';
 import FileDownloadDoneRoundedIcon from '@mui/icons-material/FileDownloadDoneRounded';
 import {uploadNewDocument} from "../api/api.tsx";
-import {FC} from "react";
 
 type ModalType = {
     active: boolean

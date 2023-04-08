@@ -1,11 +1,11 @@
-import './App.css';
-import Login from './components/Login.tsx';
-import {Navigate, Route, Routes} from "react-router-dom";
-import {NotFound} from "./components/NotFound.tsx";
 import {useState, FC} from "react";
-import {auth} from "./api/api.tsx";
+import {Navigate, Route, Routes} from "react-router-dom";
+import Login from './components/Login.tsx';
+import {NotFound} from "./components/NotFound.tsx";
 import Content from "./components/Content.tsx";
+import {auth} from "./api/api.tsx";
 import {Alert} from "@mui/material";
+import './App.css';
 
 
 function App(): FC {

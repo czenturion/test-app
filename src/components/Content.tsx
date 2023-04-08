@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
-import {CircularProgress, IconButton, Typography} from '@mui/material';
-import '../App.css';
 import {useNavigate} from "react-router-dom";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import LogoutIcon from '@mui/icons-material/Logout';
 import {Item} from "./Item.tsx";
 import {Modal} from "./Modal.tsx";
 import {getData} from "../api/api.tsx";
+import {CircularProgress, IconButton, Typography} from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import LogoutIcon from '@mui/icons-material/Logout';
+import '../App.css';
 
 const Content = ({data, setData, alertMessageTimer}) => {
     const navigate = useNavigate();

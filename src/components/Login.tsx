@@ -1,8 +1,8 @@
-import {Button, CircularProgress, OutlinedInput} from "@mui/material";
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
-import '../App.css';
 import {useState, FC} from "react";
+import {useNavigate} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import '../App.css';
+import {Button, CircularProgress, OutlinedInput} from "@mui/material";
 
 type LoginType = {
     auth: () => void
