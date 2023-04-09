@@ -1,4 +1,13 @@
 import axios from "axios";
+import {
+    ArrayElemType,
+    authResponseType,
+    deleteDocumentResponseType,
+    editDocumentResponseType,
+    getDataResponseType,
+    LoginFormType,
+    uploadDocumentResponseType
+} from "../ts/types";
 
 
 const instance = axios.create({
@@ -6,39 +15,42 @@ const instance = axios.create({
 })
 
 const API = {
-    auth(loginData) {
-        return instance.post('/ru/data/v3/testmethods/docs/login', loginData)
+    auth(loginData: LoginFormType) {
+        return instance.post<authResponseType>('/ru/data/v3/testmethods/docs/login', loginData)
             .then(res => res.data)
     },
     getData() {
-        return instance.get('/ru/data/v3/testmethods/docs/userdocs/get',
+        return instance.get<getDataResponseType>('/ru/data/v3/testmethods/docs/userdocs/get',
             // todo: Find out how to optimise configs, cause declaring in line 5 causes server deny
             {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },
-    uploadDocument(formData) {
-        return instance.post('/ru/data/v3/testmethods/docs/userdocs/create', formData,
+    uploadDocument(formData: ArrayElemType) {
+        return instance.post<uploadDocumentResponseType>('/ru/data/v3/testmethods/docs/userdocs/create', formData,
             {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },
-    deleteDocument(id) {
-        return instance.delete(`/ru/data/v3/testmethods/docs/userdocs/delete/${id}`,
+    deleteDocument(id: string) {
+        return instance.delete<deleteDocumentResponseType>(`/ru/data/v3/testmethods/docs/userdocs/delete/${id}`,
             {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },
-    editDocument(id, doc) {
-        return instance.post(`/ru/data/v3/testmethods/docs/userdocs/set/${id}`, doc,
+    editDocument(id: string, doc: ArrayElemType) {
+        return instance.post<editDocumentResponseType>(`/ru/data/v3/testmethods/docs/userdocs/set/${id}`, doc,
             {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     }
 }
 
-export const auth = async (formData, navigate, setIsLoading) => {
+
+
+export const auth = async (formData: LoginFormType, navigate: () => void, setIsLoading: (val: boolean) => void) => {
     setIsLoading(true);
     const {error_code, data} = await API.auth(formData);
 
+
     if (error_code === 0) {
-        await localStorage.setItem("token", data.token);
+        await localStorage.setItem("token", data);
         navigate('/content');
     }
     setIsLoading(false);
@@ -88,3 +100,4 @@ export const editDocumentById = async (id, doc, setData, setIsLoading, alertMess
         alertMessageTimer();
     }
 }
+

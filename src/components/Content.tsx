@@ -1,14 +1,15 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, FC} from "react";
 import {useNavigate} from "react-router-dom";
 import {Item} from "./Item.tsx";
 import {Modal} from "./Modal.tsx";
-import {getData} from "../api/api.tsx";
+import {getData} from "../api/api.ts";
 import {CircularProgress, IconButton, Typography} from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import '../App.css';
+import {ContentType} from "../ts/types";
 
-const Content = ({data, setData, alertMessageTimer}) => {
+const Content: FC<ContentType> = ({data, setData, alertMessageTimer}) => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [modalActive, setModalActive] = useState(false);

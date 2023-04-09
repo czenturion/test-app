@@ -3,13 +3,15 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import Login from './components/Login.tsx';
 import {NotFound} from "./components/NotFound.tsx";
 import Content from "./components/Content.tsx";
-import {auth} from "./api/api.tsx";
+import {auth} from "./api/api.ts";
 import {Alert} from "@mui/material";
 import './App.css';
+import {ArrayElemType} from "./ts/types";
 
 
 function App(): FC {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<ArrayElemType[]>([]);
+    const [userName, setUserName] = useState("")
     const [ isAlertVisible, setIsAlertVisible ] = useState(false);
 
     const alertMessageTimer = () => {

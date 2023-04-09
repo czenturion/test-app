@@ -3,19 +3,12 @@ import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import '../App.css';
 import {Button, CircularProgress, OutlinedInput} from "@mui/material";
+import {LoginFormType, LoginType} from "../ts/types";
 
-type LoginType = {
-    auth: () => void
-}
-
-type LoginFormType = {
-    login: string
-    password: string
-}
 
 const Login: FC<LoginType> = ({auth}) => {
     const navigate = useNavigate();
-    const {register, handleSubmit} = useForm<LoginFormType>();
+    const {register, handleSubmit, formState: {errors}, setError, clearErrors} = useForm<LoginFormType>();
     const [isLoading, setIsLoading] = useState(false);
 
     const onSubmit = loginData => {

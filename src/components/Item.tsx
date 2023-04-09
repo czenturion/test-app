@@ -1,16 +1,11 @@
 import {Card, IconButton} from '@mui/material';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
-import {deleteDocumentById} from "../api/api.tsx";
+import {deleteDocumentById} from "../api/api.ts";
 import {useState, FC} from "react";
-import {ItemEditForm, ArrayElemType} from "./ItemEditForm.tsx";
+import {ItemEditForm} from "./ItemEditForm.tsx";
+import {ItemType} from "../ts/types";
 
-type ItemType = {
-    elem: ArrayElemType
-    setData: () => void
-    setIsLoading: () => void
-    alertMessageTimer: () => void
-}
 
 export const Item: FC<ItemType> = ({elem, setData, setIsLoading, alertMessageTimer}) => {
     const [editMode, setEditMode] = useState(false);

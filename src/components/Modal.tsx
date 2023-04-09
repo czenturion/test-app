@@ -3,24 +3,9 @@ import {useForm} from "react-hook-form";
 import {IconButton, TextField} from "@mui/material";
 import CloseIcon from '@mui/icons-material/CloseRounded';
 import FileDownloadDoneRoundedIcon from '@mui/icons-material/FileDownloadDoneRounded';
-import {uploadNewDocument} from "../api/api.tsx";
+import {uploadNewDocument} from "../api/api.ts";
+import {ModalFormType, ModalType} from "../ts/types";
 
-type ModalType = {
-    active: boolean
-    setActive: () => void
-    setData: () => void
-    setIsLoading: () => void
-    alertMessageTimer: () => void
-}
-
-type ModalFormType = {
-    companySignatureName: string
-    documentName: string
-    documentStatus: string
-    documentType: string
-    employeeNumber: string
-    employeeSignatureName: string
-}
 
 export const Modal: FC<ModalType> = ({active, setActive, setData, setIsLoading, alertMessageTimer}) => {
     const {register, handleSubmit} = useForm<ModalFormType>();
