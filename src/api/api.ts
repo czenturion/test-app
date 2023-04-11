@@ -50,7 +50,7 @@ export const auth = async (formData: LoginFormType, navigate: () => void, setIsL
 
 
     if (error_code === 0) {
-        await localStorage.setItem("token", data);
+        await localStorage.setItem("token", data.token);
         navigate('/content');
     }
     setIsLoading(false);
