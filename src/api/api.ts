@@ -56,7 +56,7 @@ export const auth = async (formData: LoginFormType, navigate: () => void, setIsL
     setIsLoading(false);
 }
 
-export const getData = async (setData, setIsLoading, alertMessageTimer) => {
+export const getData = async (setData: () => void, setIsLoading: (boolean) => void, alertMessageTimer: () => void) => {
     setIsLoading(false);
     const {error_code, data} = await API.getData();
 

@@ -11,7 +11,6 @@ import {ArrayElemType} from "./ts/types";
 
 function App(): FC {
     const [data, setData] = useState<ArrayElemType[]>([]);
-    const [userName, setUserName] = useState("")
     const [ isAlertVisible, setIsAlertVisible ] = useState(false);
 
     const alertMessageTimer = () => {
