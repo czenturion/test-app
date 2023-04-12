@@ -8,6 +8,10 @@ export type LoginFormType = {
     password: string
 }
 
+export type DataType = {
+
+}
+
 export type ArrayElemType = {
     companySigDate: string
     companySignatureName: string
@@ -69,9 +73,8 @@ export type authResponseDataType = simpleResponseObject & {
     data: { token: string }
 }
 
-export type authResponseType = {
+export type authResponseType = simpleResponseObject & {
     data: authResponseDataType
-
 }
 
 export type getDataResponseType = simpleResponseObject & {

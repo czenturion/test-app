@@ -8,6 +8,7 @@ import {
     LoginFormType,
     uploadDocumentResponseType
 } from "../ts/types";
+import {UseFormSetError} from "react-hook-form";
 
 
 const instance = axios.create({
@@ -44,19 +45,21 @@ const API = {
 
 
 
-export const auth = async (formData: LoginFormType, navigate: () => void, setIsLoading: (val: boolean) => void) => {
+export const auth = async (formData: LoginFormType, navigate: () => void, setIsLoading: (val: boolean) => void, setError: UseFormSetError<LoginFormType>) => {
     setIsLoading(true);
     const {error_code, data} = await API.auth(formData);
-
 
     if (error_code === 0) {
         await localStorage.setItem("token", data.token);
         navigate('/content');
+    } else if (error_code === 2004) {
+        setError("serverResponse", {type: "server", message: "Login or password is incorrect"});
     }
+
     setIsLoading(false);
 }
 
-export const getData = async (setData: () => void, setIsLoading: (boolean) => void, alertMessageTimer: () => void) => {
+export const getData = async (setData: (data: ArrayElemType[]) => void, setIsLoading: (boolean) => void, alertMessageTimer: () => void) => {
     setIsLoading(false);
     const {error_code, data} = await API.getData();
 
@@ -68,7 +71,7 @@ export const getData = async (setData: () => void, setIsLoading: (boolean) => vo
     setIsLoading(true);
 }
 
-export const uploadNewDocument = async (formData, setIsLoading, setData, setActive, alertMessageTimer) => {
+export const uploadNewDocument = async (formData: ArrayElemType, setIsLoading: (val: boolean) => void, setData, setActive, alertMessageTimer) => {
     setIsLoading(true);
     formData.companySigDate = formData.employeeSigDate = new Date().toISOString();
     setActive(false);

@@ -12,23 +12,34 @@ const Login: FC<LoginType> = ({auth}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const onSubmit = loginData => {
-        auth(loginData, navigate, setIsLoading);
+        auth(loginData, navigate, setIsLoading, setError);
+    }
+
+    const clearErrorsForm = () => {
+        if (errors && errors.serverResponse && errors.serverResponse.message!.length > 0) {
+            clearErrors("serverResponse")
+        }
     }
 
     return <form className="login-page" onSubmit={handleSubmit(onSubmit)}>
         {
             isLoading
                 ? <CircularProgress sx={{marginTop: "15vh"}}/>
-                : <><OutlinedInput {...register("login", {required: true})}
+                : <><OutlinedInput {...register("login", {required: true, onChange: clearErrorsForm})}
                                    className="login-input"
                                    placeholder="Login"/>
-                    <OutlinedInput {...register("password", {required: true})}
+                    <OutlinedInput {...register("password", {required: true, onChange: clearErrorsForm})}
                                    className="login-input"
                                    placeholder="Password"
                                    type="password"/>
                     <Button className="login-button"
                             type="submit"
                             sx={{marginTop: '15px', maxWidth: '223px', width: '100%', height: '56px'}}>Log in</Button></>
+        }
+        {
+            errors?.serverResponse?.message
+                ? <p style={{color: "red", textTransform: "uppercase", marginTop: "25px"}}>{errors?.serverResponse?.message}</p>
+                : <></>
         }
     </form>
 }
