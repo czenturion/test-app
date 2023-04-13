@@ -45,7 +45,10 @@ const API = {
 
 
 
-export const auth = async (formData: LoginFormType, navigate: () => void, setIsLoading: (val: boolean) => void, setError: UseFormSetError<LoginFormType>) => {
+export const auth = async (formData: LoginFormType,
+                           navigate: (path: string) => void,
+                           setIsLoading: (val: boolean) => void,
+                           setError: UseFormSetError<LoginFormType>) => {
     setIsLoading(true);
     const {error_code, data} = await API.auth(formData);
 
@@ -59,7 +62,9 @@ export const auth = async (formData: LoginFormType, navigate: () => void, setIsL
     setIsLoading(false);
 }
 
-export const getData = async (setData: (data: ArrayElemType[]) => void, setIsLoading: (boolean) => void, alertMessageTimer: () => void) => {
+export const getData = async (setData: (data: ArrayElemType[]) => void,
+                              setIsLoading: (val: boolean) => void,
+                              alertMessageTimer: () => void) => {
     setIsLoading(false);
     const {error_code, data} = await API.getData();
 
@@ -71,34 +76,45 @@ export const getData = async (setData: (data: ArrayElemType[]) => void, setIsLoa
     setIsLoading(true);
 }
 
-export const uploadNewDocument = async (formData: ArrayElemType, setIsLoading: (val: boolean) => void, setData, setActive, alertMessageTimer) => {
+export const uploadNewDocument = async (formData: ArrayElemType,
+                                        setIsLoading: (val: boolean) => void,
+                                        setData: (data: ArrayElemType[]) => void,
+                                        setActive: (val: boolean) => void,
+                                        alertMessageTimer: () => void) => {
     setIsLoading(true);
     formData.companySigDate = formData.employeeSigDate = new Date().toISOString();
     setActive(false);
 
     const {error_code} = await API.uploadDocument(formData);
     if (error_code === 0) {
-        await getData(setData, setIsLoading);
+        await getData(setData, setIsLoading, alertMessageTimer);
     } else {
         alertMessageTimer();
     }
 }
 
-export const deleteDocumentById = async (id, setData, setIsLoading, alertMessageTimer) => {
+export const deleteDocumentById = async (id: string,
+                                         setData: (data: ArrayElemType[]) => void,
+                                         setIsLoading: (val: boolean) => void,
+                                         alertMessageTimer: () => void) => {
     const {error_code} = await API.deleteDocument(id);
 
     if (error_code === 0) {
-        await getData(setData, setIsLoading);
+        await getData(setData, setIsLoading, alertMessageTimer);
     } else {
         alertMessageTimer();
     }
 }
 
-export const editDocumentById = async (id, doc, setData, setIsLoading, alertMessageTimer) => {
+export const editDocumentById = async (id: string,
+                                       doc: ArrayElemType,
+                                       setData: (data: ArrayElemType[]) => void,
+                                       setIsLoading: (val: boolean) => void,
+                                       alertMessageTimer: () => void) => {
     const {error_code} = await API.editDocument(id, doc);
 
     if (error_code === 0) {
-        await getData(setData, setIsLoading);
+        await getData(setData, setIsLoading, alertMessageTimer);
     } else {
         alertMessageTimer();
     }

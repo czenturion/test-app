@@ -2,7 +2,7 @@ import {useState, FC} from "react";
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import '../App.css';
-import {Button, CircularProgress, OutlinedInput} from "@mui/material";
+import {Button, CircularProgress, OutlinedInput, Typography} from "@mui/material";
 import {LoginFormType, LoginType} from "../ts/types";
 
 
@@ -38,7 +38,7 @@ const Login: FC<LoginType> = ({auth}) => {
         }
         {
             errors?.serverResponse?.message
-                ? <p style={{color: "red", textTransform: "uppercase", marginTop: "25px"}}>{errors?.serverResponse?.message}</p>
+                ? <Typography variant="p" sx={{color: "red", textTransform: "uppercase", marginTop: "25px"}}>{errors?.serverResponse?.message}</Typography>
                 : <></>
         }
     </form>

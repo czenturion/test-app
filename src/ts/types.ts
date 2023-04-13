@@ -1,11 +1,12 @@
 // Component types
 export type LoginType = {
-    auth: (loginData: ArrayElemType, navigate: () => void, setIsLoading: () => void) => void
+    auth: (loginData: LoginFormType, navigate: (path: string) => void, setIsLoading: (val: boolean) => void) => void
 }
 
 export type LoginFormType = {
     login: string
     password: string
+    serverResponse?: string
 }
 
 export type DataType = {
@@ -27,15 +28,15 @@ export type ArrayElemType = {
 export type ItemEditFormType = {
     elem: ArrayElemType
     setEditMode: (value: boolean) => void
-    setData: () => void
-    setIsLoading: boolean
+    setData: (data: ArrayElemType[]) => void
+    setIsLoading: (val: boolean) => void
     alertMessageTimer: () => void
 }
 
 export type ItemType = {
     elem: ArrayElemType
-    setData: () => void
-    setIsLoading: () => void
+    setData: (data: ArrayElemType[]) => void
+    setIsLoading: (val: boolean) => void
     alertMessageTimer: () => void
 }
 
@@ -47,9 +48,9 @@ export type ContentType = {
 
 export type ModalType = {
     active: boolean
-    setActive: () => void
-    setData: () => void
-    setIsLoading: () => void
+    setActive: (val: boolean) => void
+    setData: (data: ArrayElemType[]) => void
+    setIsLoading: (val: boolean) => void
     alertMessageTimer: () => void
 }
 
@@ -97,6 +98,6 @@ export type editDocumentResponseType = simpleResponseObject & {
 
 export type authType = {
     formData: LoginFormType
-    navigate: () => void
-    setIsLoading: () => void
+    navigate: (path: string) => void
+    setIsLoading: (val: boolean) => void
 }

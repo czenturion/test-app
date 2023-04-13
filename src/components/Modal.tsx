@@ -10,8 +10,8 @@ import {ModalFormType, ModalType} from "../ts/types";
 export const Modal: FC<ModalType> = ({active, setActive, setData, setIsLoading, alertMessageTimer}) => {
     const {register, handleSubmit} = useForm<ModalFormType>();
 
-    const onSubmit = (dataForm) => {
-        uploadNewDocument(dataForm, setIsLoading, setData, setActive, alertMessageTimer);
+    const onSubmit = (formData) => {
+        uploadNewDocument(formData, setIsLoading, setData, setActive, alertMessageTimer);
     }
 
     return (
