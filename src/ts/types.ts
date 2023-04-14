@@ -42,7 +42,7 @@ export type ItemType = {
 
 export type ContentType = {
     data: ArrayElemType[]
-    setData: () => void
+    setData: (data: ArrayElemType[]) => void
     alertMessageTimer: () => void
 }
 

@@ -22,7 +22,7 @@ const API = {
     },
     getData() {
         return instance.get<getDataResponseType>('/ru/data/v3/testmethods/docs/userdocs/get',
-            // todo: Find out how to optimise configs, cause declaring in line 5 causes server deny
+            // todo: Find out how to optimise configs, cause declaring it in line 5 causes server deny
             {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },
@@ -53,10 +53,10 @@ export const auth = async (formData: LoginFormType,
     const {error_code, data} = await API.auth(formData);
 
     if (error_code === 0) {
-        await localStorage.setItem("token", data.token);
+        await localStorage.setItem("token", data.token + formData.login);
         navigate('/content');
     } else if (error_code === 2004) {
-        setError("serverResponse", {type: "server", message: "Login or password is incorrect"});
+        setError("serverResponse", {type: error_code, message: "Login or password is incorrect"});
     }
 
     setIsLoading(false);
