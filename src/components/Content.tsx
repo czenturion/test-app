@@ -31,7 +31,7 @@ const Content: FC<ContentType> = ({data, setData, alertMessageTimer}) => {
                 !isLoading
                     ? <CircularProgress sx={{marginTop: "20vh"}}/>
                     : data.length !== 0
-                        ? data.reverse().map(elem => <Item elem={elem}
+                        ? data.map(elem => <Item elem={elem}
                                                  key={elem.id}
                                                  setIsLoading={setIsLoading}
                                                  setData={setData}
