@@ -69,7 +69,7 @@ export const getData = async (setData: (data: ArrayElemType[]) => void,
     const {error_code, data} = await API.getData();
 
     if (error_code === 0) {
-        setData(data);
+        setData(data.sort((a, b) => b.companySigDate.localeCompare(a.companySigDate)));
     } else if (error_code === 2004) {
         alertMessageTimer();
     }
