@@ -35,8 +35,7 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
             <TextField {...register("companySignatureName", {required: true})}
                    defaultValue={elem.companySignatureName}
                    label="companySignatureName"
-                   className="input"
-                   sx={{marginTop: "10px"}}/>
+                   className="input"/>
             <IconButton onClick={() => setEditMode(false)}
                         title="Exit from edit mode">
                 <DoDisturbRoundedIcon/>

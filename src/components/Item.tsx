@@ -11,7 +11,7 @@ export const Item: FC<ItemType> = ({elem, setData, setIsLoading, alertMessageTim
     const [editMode, setEditMode] = useState(false);
 
     return <Card key={elem.id}
-                 sx={{padding: "10px", margin: "10px", width: "300px"}}
+                 sx={{padding: "10px", margin: "10px", width: "300px", height: "350px"}}
                  className="card">
         {
             !editMode
