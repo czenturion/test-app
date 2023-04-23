@@ -1,4 +1,4 @@
-import {CircularProgress, IconButton, Input, Typography} from "@mui/material";
+import {CircularProgress, IconButton, TextField, Typography} from "@mui/material";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import DoDisturbRoundedIcon from "@mui/icons-material/DoDisturbRounded";
 import {useForm} from "react-hook-form";
@@ -32,32 +32,33 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
             }
         </div>
         <div className="btnStyle">
-            <Input {...register("companySignatureName", {required: true})}
+            <TextField {...register("companySignatureName", {required: true})}
                    defaultValue={elem.companySignatureName}
-                   placeholder="companySignatureName"
-                   className="input"/>
+                   label="companySignatureName"
+                   className="input"
+                   sx={{marginTop: "10px"}}/>
             <IconButton onClick={() => setEditMode(false)}
                         title="Exit from edit mode">
                 <DoDisturbRoundedIcon/>
             </IconButton>
         </div>
-        <Input {...register("documentName", {required: true})}
+        <TextField {...register("documentName", {required: true})}
                defaultValue={elem.documentName}
-               placeholder="documentName"/>
-        <Input {...register("documentStatus", {required: true})}
+               label="documentName"
+               sx={{marginTop: "10px"}}/>
+        <TextField {...register("documentStatus", {required: true})}
                defaultValue={elem.documentStatus}
-               placeholder="documentStatus"
+               label="documentStatus"
                component="b"/>
-        <Input {...register("documentType", {required: true})}
+        <TextField {...register("documentType", {required: true})}
                defaultValue={elem.documentType}
-               placeholder="documentType"/>
-        <Input {...register("employeeNumber", {required: true})}
+               label="documentType"/>
+        <TextField {...register("employeeNumber", {required: true})}
                defaultValue={elem.employeeNumber}
-               placeholder="employeeNumber"/>
-        <Typography variant="h7">{elem.employeeSigDate}</Typography>
-        <Input {...register("employeeSignatureName", {required: true})}
+               label="employeeNumber"/>
+        <TextField {...register("employeeSignatureName", {required: true})}
                defaultValue={elem.employeeSignatureName}
-               placeholder="employeeSignatureName"
+               label="employeeSignatureName"
                sx={{marginBottom: "14px"}}/>
     </form>
 }

@@ -50,10 +50,11 @@
 .itemForm {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-.itemForm Input {
-  margin: 8px 0;
+.itemForm input {
+  padding: 6px;
 }
 
 p {
