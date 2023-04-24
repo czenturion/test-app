@@ -15,9 +15,9 @@ export const Item: FC<ItemType> = ({elem, setData, setIsLoading, alertMessageTim
                  className="card">
         {
             !editMode
-                ? <div>
+                ? <div className="itemCard">
                     <div className="btnStyle">
-                        <p>{elem.companySigDate}</p>
+                        <b>{elem.companySigDate}</b>
                         <IconButton onClick={() => deleteDocumentById(elem.id, setData, setIsLoading, alertMessageTimer)}
                                     title="Delete this Document">
                             <DeleteForeverRoundedIcon/>

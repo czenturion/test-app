@@ -43,8 +43,7 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
         </div>
         <TextField {...register("documentName", {required: true})}
                defaultValue={elem.documentName}
-               label="documentName"
-               sx={{marginTop: "10px"}}/>
+               label="documentName"/>
         <TextField {...register("documentStatus", {required: true})}
                defaultValue={elem.documentStatus}
                label="documentStatus"
@@ -57,7 +56,6 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
                label="employeeNumber"/>
         <TextField {...register("employeeSignatureName", {required: true})}
                defaultValue={elem.employeeSignatureName}
-               label="employeeSignatureName"
-               sx={{marginBottom: "14px"}}/>
+               label="employeeSignatureName"/>
     </form>
 }
