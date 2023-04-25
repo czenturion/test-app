@@ -22,7 +22,7 @@ const API = {
     },
     getData() {
         return instance.get<getDataResponseType>('/ru/data/v3/testmethods/docs/userdocs/get',
-            // todo: Find out how to optimise configs, cause declaring it in line 5 causes server deny
+            // todo: Find out how to optimise configs, cause declaring it in line 15 causes server deny
             {headers: {"x-auth": localStorage.getItem("token")}})
             .then(res => res.data)
     },

@@ -108,7 +108,11 @@ p {
   padding: 20px;
   border-radius: 12px;
   background-color: #fff;
-  width: 200px;
+  width: 350px;
+}
+
+.modal__content input {
+  width: 350px;
 }
 
 .form__buttons {

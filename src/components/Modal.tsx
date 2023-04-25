@@ -27,23 +27,28 @@ export const Modal: FC<ModalType> = ({active, setActive, setData, setIsLoading, 
                 </div>
                 <div>
                     <TextField {...register("companySignatureName", {required: true})} id="standard-basic"
-                               label="companySignatureName" variant="standard"/>
-                    <TextField {...register("documentName", {required: true})} id="standard-basic" label="documentName"
+                               label="companySignatureName"
+                               variant="standard"/>
+                    <TextField {...register("documentName", {required: true})} id="standard-basic"
+                               label="documentName"
                                variant="standard"/>
                     <TextField {...register("documentStatus", {required: true})} id="standard-basic"
                                label="documentStatus"
                                variant="standard"/>
                 </div>
                 <div>
-                    <TextField {...register("documentType", {required: true})} id="standard-basic" label="documentType"
+                    <TextField {...register("documentType", {required: true})} id="standard-basic"
+                               label="documentType"
                                variant="standard"/>
                     <TextField {...register("employeeNumber", {required: true})} id="standard-basic"
                                label="employeeNumber"
                                variant="standard"/>
                     <TextField {...register("employeeSignatureName", {required: true})} id="standard-basic"
-                               label="employeeSignatureName" variant="standard"/>
+                               label="employeeSignatureName"
+                               variant="standard"/>
                 </div>
             </form>
+
         </div>
     )
 }
