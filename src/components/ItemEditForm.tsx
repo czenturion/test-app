@@ -1,6 +1,6 @@
 import {CircularProgress, IconButton, TextField, Typography} from "@mui/material";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import DoDisturbRoundedIcon from "@mui/icons-material/DoDisturbRounded";
+import CancelIcon from '@mui/icons-material/Cancel';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import {useForm} from "react-hook-form";
 import {editDocumentById} from "../api/api.ts";
 import {useState, FC} from "react";
@@ -19,12 +19,12 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
 
     return <form className="itemForm">
         <div className="btnStyle">
-            <Typography variant="h7">{elem.companySigDate}</Typography>
+            <Typography variant="p" sx={{ fontWeight: 'bold' }}>{elem.companySigDate}</Typography>
             {
                 !btnClicked
                     ? <IconButton title="Save edited document"
                                   onClick={handleSubmit(onSubmit)}>
-                        <CheckRoundedIcon/>
+                        <ThumbUpAltIcon/>
                     </IconButton>
                     : <CircularProgress size={20}
                                         sx={{marginRight: "10px"}}
@@ -38,7 +38,7 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
                    className="input"/>
             <IconButton onClick={() => setEditMode(false)}
                         title="Exit from edit mode">
-                <DoDisturbRoundedIcon/>
+                <CancelIcon/>
             </IconButton>
         </div>
         <TextField {...register("documentName", {required: true})}
