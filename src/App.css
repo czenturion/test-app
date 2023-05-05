@@ -106,20 +106,22 @@ p {
 }
 
 .modal__content {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 12px;
   background-color: #fff;
-  width: 350px;
 }
 
 .modal__content input {
-  width: 350px;
+  width: 300px;
 }
 
 .form__buttons {
   display: flex;
   justify-content: space-between;
 }
+
 
 @media screen and (max-width: 1110px) {
   .content-cards {

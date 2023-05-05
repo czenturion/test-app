@@ -26,9 +26,7 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
                                   onClick={handleSubmit(onSubmit)}>
                         <ThumbUpAltIcon/>
                     </IconButton>
-                    : <CircularProgress size={20}
-                                        sx={{marginRight: "10px"}}
-                                        color="inherit"/>
+                    : <CircularProgress size={20}/>
             }
         </div>
         <div className="btnStyle">

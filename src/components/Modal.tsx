@@ -18,14 +18,13 @@ export const Modal: FC<ModalType> = ({active, setActive, setData, setIsLoading, 
         <div className={active ? "modal active" : "modal"}>
             <form onSubmit={handleSubmit(onSubmit)} className="modal__content">
                 <div className="form__buttons">
-                    <IconButton className="form-close-btn" onClick={() => setActive(false)}>
+                    <IconButton onClick={() => setActive(false)}>
                         <CloseIcon/>
                     </IconButton>
-                    <IconButton className="form-accept-btn" type="submit">
+                    <IconButton type="submit">
                         <FileDownloadDoneRoundedIcon/>
                     </IconButton>
                 </div>
-                <div>
                     <TextField {...register("companySignatureName", {required: true})} id="standard-basic"
                                label="companySignatureName"
                                variant="standard"/>
@@ -35,8 +34,7 @@ export const Modal: FC<ModalType> = ({active, setActive, setData, setIsLoading, 
                     <TextField {...register("documentStatus", {required: true})} id="standard-basic"
                                label="documentStatus"
                                variant="standard"/>
-                </div>
-                <div>
+
                     <TextField {...register("documentType", {required: true})} id="standard-basic"
                                label="documentType"
                                variant="standard"/>
@@ -46,9 +44,7 @@ export const Modal: FC<ModalType> = ({active, setActive, setData, setIsLoading, 
                     <TextField {...register("employeeSignatureName", {required: true})} id="standard-basic"
                                label="employeeSignatureName"
                                variant="standard"/>
-                </div>
             </form>
-
         </div>
     )
 }
