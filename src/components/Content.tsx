@@ -29,17 +29,17 @@ const Content: FC<ContentType> = ({data, setData, alertMessageTimer}) => {
         <div className="content-cards">
             {
                 !isLoading
-                    ? <CircularProgress sx={{marginTop: "20vh"}}/>
+                    ? <CircularProgress className="content__preloader"/>
                     : data.length !== 0
                         ? data.map(elem => <Item elem={elem}
                                                  key={elem.id}
                                                  setIsLoading={setIsLoading}
                                                  setData={setData}
                                                  alertMessageTimer={alertMessageTimer}/>)
-                        : <Typography variant="h2" sx={{margin: "40px 80px"}}>No documents</Typography>
+                        : <Typography variant="h2">No documents</Typography>
             }
         </div>
-        <div style={{visibility: `${isLoading ? "visible" : "hidden"}`, display: "flex", flexDirection: "column", padding: "15px"}}>
+        <div className="content__menu" style={{visibility: `${isLoading ? "visible" : "hidden"}`}}>
             <IconButton
                 onClick={onClickLogOut}
                 title="Log Out">
@@ -47,8 +47,7 @@ const Content: FC<ContentType> = ({data, setData, alertMessageTimer}) => {
             </IconButton>
             <IconButton
                 onClick={() => setModalActive(true)}
-                title="Add new Document"
-                sx={{marginTop: "15px"}}>
+                title="Add new Document">
                 <AddCircleOutlineIcon fontSize="large" className="button-add"/>
             </IconButton>
         </div>
