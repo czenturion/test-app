@@ -25,7 +25,7 @@ const Login: FC<LoginType> = ({auth}) => {
         {
             isLoading
                 ? <CircularProgress sx={{marginTop: "15vh"}}/>
-                : <><OutlinedInput {...register("login", {required: true, onChange: clearErrorsForm})}
+                : <div className="login-form"><OutlinedInput {...register("login", {required: true, onChange: clearErrorsForm})}
                                    className="login-input"
                                    placeholder="Login"/>
                     <OutlinedInput {...register("password", {required: true, onChange: clearErrorsForm})}
@@ -33,8 +33,7 @@ const Login: FC<LoginType> = ({auth}) => {
                                    placeholder="Password"
                                    type="password"/>
                     <Button className="login-button"
-                            type="submit"
-                            sx={{marginTop: '15px', maxWidth: '223px', width: '100%', height: '56px'}}>Log in</Button></>
+                            type="submit">Log in</Button></div>
         }
         {
             errors?.serverResponse?.message

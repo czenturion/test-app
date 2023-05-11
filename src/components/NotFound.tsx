@@ -8,6 +8,6 @@ export const NotFound = () => {
 
     return <div className='not-found-page'>
         <Typography variant='h2' className='not-found-title'>NOT FOUND</Typography>
-        <Button sx={{marginTop: '50px', width: '150px', height: '60px'}} onClick={onClick}>Go back</Button>
+        <Button onClick={onClick}>Go back</Button>
     </div>
 }

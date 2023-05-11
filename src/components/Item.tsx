@@ -10,9 +10,7 @@ import {ItemType} from "../ts/types";
 export const Item: FC<ItemType> = ({elem, setData, setIsLoading, alertMessageTimer}) => {
     const [editMode, setEditMode] = useState(false);
 
-    return <Card key={elem.id}
-                 sx={{padding: "10px", margin: "10px", width: "300px", height: "350px"}}
-                 className="card">
+    return <Card key={elem.id} className="card">
         {
             !editMode
                 ? <div className="itemCard">

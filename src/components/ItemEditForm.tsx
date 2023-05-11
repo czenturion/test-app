@@ -19,7 +19,7 @@ export const ItemEditForm: FC<ItemEditFormType> = ({elem, setEditMode, setData, 
 
     return <form className="itemForm">
         <div className="btnStyle">
-            <Typography variant="p" sx={{ fontWeight: 'bold' }}>{elem.companySigDate}</Typography>
+            <Typography variant="p" className="companySigDate">{elem.companySigDate}</Typography>
             {
                 !btnClicked
                     ? <IconButton title="Save edited document"
