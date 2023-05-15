@@ -15,6 +15,16 @@
   margin-top: 20vh;
 }
 
+.login-page .MuiTypography-p {
+  color: red;
+  text-transform: uppercase;
+  margin-top: 25px;
+}
+
+.login-page .MuiCircularProgress-root {
+  margin-top: 15vh;
+}
+
 .login-input {
   margin: 20px 0;
 }

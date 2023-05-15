@@ -24,7 +24,7 @@ const Login: FC<LoginType> = ({auth}) => {
     return <form className="login-page" onSubmit={handleSubmit(onSubmit)}>
         {
             isLoading
-                ? <CircularProgress sx={{marginTop: "15vh"}}/>
+                ? <CircularProgress/>
                 : <div className="login-form"><OutlinedInput {...register("login", {required: true, onChange: clearErrorsForm})}
                                    className="login-input"
                                    placeholder="Login"/>
@@ -37,7 +37,7 @@ const Login: FC<LoginType> = ({auth}) => {
         }
         {
             errors?.serverResponse?.message
-                ? <Typography variant="p" sx={{color: "red", textTransform: "uppercase", marginTop: "25px"}}>{errors?.serverResponse?.message}</Typography>
+                ? <Typography variant="p">{errors?.serverResponse?.message}</Typography>
                 : <></>
         }
     </form>
